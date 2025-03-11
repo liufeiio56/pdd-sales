@@ -1,6 +1,7 @@
 package com.lora.pay.entity;
 
 import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
@@ -15,7 +16,8 @@ public class User {
     private String userName;
     private String passWord;
     private String pddUserName;
-    private String isAdmin;
+    @TableField("is_admin") // 指定数据库字段名
+    private Integer isAdmin; // 使用Integer类型对应数据库int
     private String userLabel;
 
 
