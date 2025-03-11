@@ -18,7 +18,7 @@ public class UserController {
 
     @GetMapping("/index")
     public String showIndexPage(HttpSession session, Model model) {
-        if (session.getAttribute("admin") == null) {
+        if (session.getAttribute("user") == null) {
             return "redirect:/login";
         }
         return "index";
@@ -26,7 +26,7 @@ public class UserController {
 
     @GetMapping("/addUser")
     public String showAddUserPage(HttpSession session) {
-        if (session.getAttribute("admin") == null) {
+        if (session.getAttribute("user") == null) {
             return "redirect:/login";
         }
         return "addUser";
@@ -35,11 +35,13 @@ public class UserController {
     @PostMapping("/addUser")
     public String addUser(@RequestParam String username, @RequestParam String password,
                           HttpSession session) {
-        if (session.getAttribute("admin") == null) {
+        if (session.getAttribute("user") == null) {
             return "redirect:/login";
         }
-        User user = new User().setUserName(username).setPassWord(password);
+        User user = new User();
+        user.setUserName(username);
+        user.setPassWord(password);
         userService.addUser(user);
         return "redirect:/index";
     }
-}    
+}

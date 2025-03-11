@@ -5,14 +5,20 @@
     <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}">
 </head>
 <body>
-    <h1>管理员登录</h1>
-    <form action="#" th:action="@{/login}" method="post">
-        <label for="username">用户名:</label>
-        <input type="text" id="username" name="username" required><br>
-        <label for="password">密码:</label>
-        <input type="password" id="password" name="password" required><br>
-        <p th:if="${error}" th:text="${error}" style="color: red;"></p>
-        <input type="submit" value="登录">
-    </form>
+<h1>管理员登录</h1>
+<form action="#" th:action="@{/login}" method="post">
+    <label for="username">用户名:</label>
+    <input type="text" id="username" name="username" required><br>
+    <label for="password">密码:</label>
+    <input type="password" id="password" name="password" required><br>
+
+    <input type="submit" value="登录">
+    <p style="color: red" th:if="${param.error}">
+        登录失败：用户名或密码错误
+    </p>
+    <p style="color: red" th:if="${error}">
+        [[${error.message}]]
+    </p>
+</form>
 </body>
-</html>    
+</html>
